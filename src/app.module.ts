@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
 import configuration from './config';
 
 @Module({
@@ -20,12 +21,13 @@ import configuration from './config';
           type: 'mysql',
           entities: [`${__dirname}/**/*.entity{.ts,.js}`],
           autoLoadEntities: true,
-          synchronize: process.env.NODE_ENV === 'development',
+          synchronize: true,
           keepConnectionAlive: true,
           timezone: '+08:00',
           ...configService.get('db.mysql'),
         }) as TypeOrmModuleOptions,
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
