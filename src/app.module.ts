@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import configuration from './config';
 
 @Module({
@@ -10,6 +11,20 @@ import configuration from './config';
       cache: true,
       isGlobal: true,
       load: [configuration],
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) =>
+        ({
+          type: 'mysql',
+          entities: [`${__dirname}/**/*.entity{.ts,.js}`],
+          autoLoadEntities: true,
+          synchronize: process.env.NODE_ENV === 'development',
+          keepConnectionAlive: true,
+          timezone: '+08:00',
+          ...configService.get('db.mysql'),
+        }) as TypeOrmModuleOptions,
     }),
   ],
   controllers: [AppController],

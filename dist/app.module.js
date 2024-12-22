@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const config_1 = require("@nestjs/config");
+const typeorm_1 = require("@nestjs/typeorm");
 const config_2 = require("./config");
 let AppModule = class AppModule {
 };
@@ -22,6 +23,19 @@ exports.AppModule = AppModule = __decorate([
                 cache: true,
                 isGlobal: true,
                 load: [config_2.default],
+            }),
+            typeorm_1.TypeOrmModule.forRootAsync({
+                imports: [config_1.ConfigModule],
+                inject: [config_1.ConfigService],
+                useFactory: (configService) => ({
+                    type: 'mysql',
+                    entities: [`${__dirname}/**/*.entity{.ts,.js}`],
+                    autoLoadEntities: true,
+                    synchronize: process.env.NODE_ENV === 'development',
+                    keepConnectionAlive: true,
+                    timezone: '+08:00',
+                    ...configService.get('db.mysql'),
+                }),
             }),
         ],
         controllers: [app_controller_1.AppController],

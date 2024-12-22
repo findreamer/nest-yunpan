@@ -20,8 +20,8 @@ db:
   mysql:
     host: 'localhost'
     username: 'root'
-    password: ''
-    database: ''
+    password: 'your_password'
+    database: 'easypan'
     port: 3306
     charset: 'utf8mb4'
     logger: 'file'
