@@ -9,7 +9,6 @@ const configFileMap = {
 };
 
 const env = process.env.NODE_ENV;
-console.log(env);
 
 export default () => {
   return yml.load(

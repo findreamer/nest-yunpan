@@ -9,7 +9,6 @@ const configFileMap = {
     production: 'prod',
 };
 const env = process.env.NODE_ENV;
-console.log(env);
 exports.default = () => {
     return yml.load((0, fs_1.readFileSync)((0, path_1.join)(__dirname, `./${configFileMap[env]}.yml`), 'utf8'));
 };
