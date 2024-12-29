@@ -7,6 +7,7 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IResponse } from '../typing/global';
+import { RESPONSE_CODE_MSG } from '../constant';
 
 @Injectable()
 export class ResponseFormatterInterceptor implements NestInterceptor {
@@ -20,7 +21,7 @@ export class ResponseFormatterInterceptor implements NestInterceptor {
           code: 200,
           success: true,
           data,
-          msg: '请求成功',
+          msg: RESPONSE_CODE_MSG['200'],
         };
         if (Array.isArray(data)) {
           response.data = {
