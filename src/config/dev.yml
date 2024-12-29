@@ -1,4 +1,5 @@
 app:
+  name: 'easypan'
   prefix: ''
   port: 8080
   logger:
@@ -30,3 +31,10 @@ db:
     dropSchema: false
     supportBigNumbers: true
     bigNumberStrings: true
+
+swagger:
+  enable: true
+  title: 'easypan'
+  description: 'easypan'
+  path: api-docs
+  version: '1.0.0'

@@ -101,3 +101,801 @@
 [2024-12-22T15:12:49.951Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'typeorm_metadata'
 [2024-12-22T15:12:49.959Z][QUERY]: CREATE TABLE `user_info` (`user_id` int NOT NULL AUTO_INCREMENT COMMENT '用户ID', `nick_name` varchar(20) NOT NULL COMMENT '用户名', `email` varchar(50) NOT NULL COMMENT '用户邮箱', `qq_open_id` varchar(35) NOT NULL COMMENT 'QQ OpenId', `qq_avatar` varchar(255) NOT NULL COMMENT 'QQ 头像', `password` varchar(32) NOT NULL COMMENT '密码', `join_time` datetime NOT NULL COMMENT '加入时间', `last_login_time` datetime NOT NULL COMMENT '最后登录时间', `status` tinyint NOT NULL COMMENT '状态 0:禁用 1:启用', `use_space` bigint NOT NULL COMMENT '使用空间', `total_space` bigint NOT NULL COMMENT '总空间', UNIQUE INDEX `IDX_576f91460a2749aae070e898e8` (`nick_name`), UNIQUE INDEX `IDX_75798a41b0aaf7b5575094217d` (`email`), UNIQUE INDEX `IDX_38bb60be41075e9a4887a3eaad` (`qq_open_id`), PRIMARY KEY (`user_id`)) ENGINE=InnoDB
 [2024-12-22T15:12:49.994Z][QUERY]: COMMIT
+[2024-12-29T06:01:25.920Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T06:01:25.937Z][QUERY]: START TRANSACTION
+[2024-12-29T06:01:25.939Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2024-12-29T06:01:25.941Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME`, `TABLE_COMMENT` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'user_info'
+[2024-12-29T06:01:25.961Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+                
+[2024-12-29T06:01:25.961Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2024-12-29T06:01:25.961Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2024-12-29T06:01:25.961Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2024-12-29T06:01:25.961Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2024-12-29T06:01:25.985Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T06:01:25.987Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'typeorm_metadata'
+[2024-12-29T06:01:25.990Z][QUERY]: COMMIT
+[2024-12-29T06:02:28.417Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T06:02:28.434Z][QUERY]: START TRANSACTION
+[2024-12-29T06:02:28.436Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2024-12-29T06:02:28.440Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME`, `TABLE_COMMENT` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'user_info'
+[2024-12-29T06:02:28.445Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+                
+[2024-12-29T06:02:28.446Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2024-12-29T06:02:28.446Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2024-12-29T06:02:28.446Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2024-12-29T06:02:28.446Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2024-12-29T06:02:28.463Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T06:02:28.466Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'typeorm_metadata'
+[2024-12-29T06:02:28.470Z][QUERY]: COMMIT
+[2024-12-29T11:36:14.836Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T11:36:17.861Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T11:36:20.880Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T11:36:23.897Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T11:36:26.912Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T11:36:29.925Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T11:36:32.939Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T11:36:32.953Z][QUERY]: START TRANSACTION
+[2024-12-29T11:36:32.955Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2024-12-29T11:36:32.957Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME`, `TABLE_COMMENT` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'user_info'
+[2024-12-29T11:36:32.972Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+                
+[2024-12-29T11:36:32.972Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2024-12-29T11:36:32.972Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2024-12-29T11:36:32.973Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2024-12-29T11:36:32.973Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2024-12-29T11:36:32.996Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T11:36:32.999Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'typeorm_metadata'
+[2024-12-29T11:36:33.005Z][QUERY]: COMMIT
+[2024-12-29T12:09:14.755Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T12:09:14.771Z][QUERY]: START TRANSACTION
+[2024-12-29T12:09:14.773Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2024-12-29T12:09:14.775Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME`, `TABLE_COMMENT` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'user_info'
+[2024-12-29T12:09:14.784Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+                
+[2024-12-29T12:09:14.785Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2024-12-29T12:09:14.785Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2024-12-29T12:09:14.785Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2024-12-29T12:09:14.785Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2024-12-29T12:09:14.807Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T12:09:14.809Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'typeorm_metadata'
+[2024-12-29T12:09:14.813Z][QUERY]: COMMIT
+[2024-12-29T12:09:27.871Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T12:09:27.886Z][QUERY]: START TRANSACTION
+[2024-12-29T12:09:27.887Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2024-12-29T12:09:27.888Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME`, `TABLE_COMMENT` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'user_info'
+[2024-12-29T12:09:27.890Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+                
+[2024-12-29T12:09:27.890Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2024-12-29T12:09:27.890Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2024-12-29T12:09:27.890Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2024-12-29T12:09:27.890Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2024-12-29T12:09:27.897Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T12:09:27.899Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'typeorm_metadata'
+[2024-12-29T12:09:27.902Z][QUERY]: COMMIT
+[2024-12-29T12:09:37.304Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T12:09:37.319Z][QUERY]: START TRANSACTION
+[2024-12-29T12:09:37.321Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2024-12-29T12:09:37.322Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME`, `TABLE_COMMENT` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'user_info'
+[2024-12-29T12:09:37.325Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+                
+[2024-12-29T12:09:37.325Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2024-12-29T12:09:37.326Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2024-12-29T12:09:37.326Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2024-12-29T12:09:37.326Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2024-12-29T12:09:37.342Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T12:09:37.344Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'typeorm_metadata'
+[2024-12-29T12:09:37.348Z][QUERY]: COMMIT
+[2024-12-29T12:10:34.002Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T12:10:34.017Z][QUERY]: START TRANSACTION
+[2024-12-29T12:10:34.019Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2024-12-29T12:10:34.020Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME`, `TABLE_COMMENT` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'user_info'
+[2024-12-29T12:10:34.023Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+                
+[2024-12-29T12:10:34.024Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2024-12-29T12:10:34.024Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2024-12-29T12:10:34.024Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2024-12-29T12:10:34.024Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2024-12-29T12:10:34.039Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T12:10:34.040Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'typeorm_metadata'
+[2024-12-29T12:10:34.044Z][QUERY]: COMMIT
+[2024-12-29T12:10:56.307Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T12:10:56.322Z][QUERY]: START TRANSACTION
+[2024-12-29T12:10:56.323Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2024-12-29T12:10:56.324Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME`, `TABLE_COMMENT` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'user_info'
+[2024-12-29T12:10:56.326Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+                
+[2024-12-29T12:10:56.326Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2024-12-29T12:10:56.326Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2024-12-29T12:10:56.326Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2024-12-29T12:10:56.327Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'easypan'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'user_info'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'easypan'
+                    AND
+                    `TABLE_NAME` = 'user_info'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2024-12-29T12:10:56.333Z][QUERY]: SELECT VERSION() AS `version`
+[2024-12-29T12:10:56.335Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'easypan' AND `TABLE_NAME` = 'typeorm_metadata'
+[2024-12-29T12:10:56.338Z][QUERY]: COMMIT

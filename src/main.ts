@@ -8,6 +8,7 @@ import {
 } from './common/interceptors';
 import { join } from 'node:path';
 import { isDev } from './utils';
+import { setupSwagger } from './setup-swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestApplication>(AppModule);
@@ -15,7 +16,7 @@ async function bootstrap() {
   const { port, prefix } = configService.get('app', { infer: true });
   app.setGlobalPrefix(prefix);
   app.enableCors({ origin: '*', credentials: true });
-  app.useStaticAssets({ root: join(__dirname, '..', 'public') });
+  // app.useStaticAssets({ root: join(__dirname, '..', 'public') });
 
   if (isDev) {
     app.useGlobalInterceptors(new LoggerInterceptor());
@@ -27,6 +28,8 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   // 注册全局拦截器
   app.useGlobalInterceptors(new ResponseFormatterInterceptor());
+
+  setupSwagger(app, configService);
   await app.listen(port ?? 3000);
 }
 bootstrap();

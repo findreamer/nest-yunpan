@@ -1,7 +1,1 @@
-export const RESPONSE_CODE_MSG = {
-  200: '请求成功',
-  404: '请求资源不存在',
-  600: '请求参数错误',
-  601: '信息已存在',
-  500: '服务器异常',
-};
+export * from './response';
