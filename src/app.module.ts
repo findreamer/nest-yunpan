@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { UserModule } from './user/user.module';
+import { UserModule } from './module/user/user.module';
+import { RedisModule } from '@liaoliaots/nestjs-redis';
 import configuration from './config';
+import { MainModule } from './module/main/main.module';
 
 @Module({
   imports: [
@@ -27,9 +27,22 @@ import configuration from './config';
           ...configService.get('db.mysql'),
         }) as TypeOrmModuleOptions,
     }),
+    RedisModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
+        return {
+          closeClient: true,
+          readyLog: true,
+          errorLog: true,
+          config: configService.get('redis'),
+        };
+      },
+    }),
     UserModule,
+    MainModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

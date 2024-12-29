@@ -38,3 +38,11 @@ swagger:
   description: 'easypan'
   path: api-docs
   version: '1.0.0'
+
+# redis 配置
+redis:
+  host: 'localhost'
+  password: '123456'
+  port: 6379
+  db: 0
+  keyPrefix: ''

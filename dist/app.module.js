@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
-const user_module_1 = require("./user/user.module");
+const user_module_1 = require("./module/user/user.module");
+const nestjs_redis_1 = require("@liaoliaots/nestjs-redis");
 const config_2 = require("./config");
+const main_module_1 = require("./module/main/main.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -38,10 +38,23 @@ exports.AppModule = AppModule = __decorate([
                     ...configService.get('db.mysql'),
                 }),
             }),
+            nestjs_redis_1.RedisModule.forRootAsync({
+                imports: [config_1.ConfigModule],
+                inject: [config_1.ConfigService],
+                useFactory: (configService) => {
+                    return {
+                        closeClient: true,
+                        readyLog: true,
+                        errorLog: true,
+                        config: configService.get('redis'),
+                    };
+                },
+            }),
             user_module_1.UserModule,
+            main_module_1.MainModule,
         ],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        controllers: [],
+        providers: [],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
