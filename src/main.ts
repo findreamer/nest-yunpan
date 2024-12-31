@@ -9,6 +9,7 @@ import {
 import { join } from 'node:path';
 import { isDev } from './utils';
 import { setupSwagger } from './setup-swagger';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestApplication>(AppModule);
@@ -28,6 +29,7 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   // 注册全局拦截器
   app.useGlobalInterceptors(new ResponseFormatterInterceptor());
+  app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
   setupSwagger(app, configService);
   await app.listen(port ?? 3000);

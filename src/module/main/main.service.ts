@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 import { createMath, GenerateUUID } from '@/utils';
 import { RedisService } from '@liaoliaots/nestjs-redis';
 import { Redis } from 'ioredis';
@@ -28,4 +28,24 @@ export class MainService {
       return new Error(error);
     }
   }
+
+  async sendEmailCode(email: string, code: string, uuid: string) {
+    try {
+      const cacheKey = CacheEnum.CAPTCHA_CODE_KEY + uuid;
+      const captcha = await this.redis.get(cacheKey);
+      if (!captcha) {
+        throw new HttpException('验证码已过期', HttpStatus.BAD_REQUEST);
+      }
+      if (captcha.toLowerCase() !== code.toLowerCase()) {
+        throw new HttpException('验证码错误', HttpStatus.BAD_REQUEST);
+      }
+      await this.redis.del(cacheKey);
+      // 发送邮件
+      return this.sendEmail();
+    } catch (error) {
+      return new Error(error);
+    }
+  }
+
+  sendEmail() {}
 }

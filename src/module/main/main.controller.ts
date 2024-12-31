@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { MainService } from './main.service';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { SendEmailCodeDto } from './dto';
 
 @ApiTags('main')
 @Controller()
@@ -13,5 +14,11 @@ export class MainController {
   @Get('/captcha')
   getCaptcha() {
     return this.mainService.getCaptcha();
+  }
+
+  @Post('/sendEmailCode')
+  sendEmailCode(@Body() sendEmailCode: SendEmailCodeDto) {
+    const { email, code, uuid } = sendEmailCode;
+    return this.mainService.sendEmailCode(email, code, uuid);
   }
 }

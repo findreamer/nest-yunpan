@@ -1,5 +1,4 @@
-# compiled output
-/dist
+/dist/*
 /node_modules
 
 # Logs
@@ -13,12 +12,11 @@ lerna-debug.log*
 
 # OS
 .DS_Store
+/src/config/dev.yml 
 
 # Tests
 /coverage
 /.nyc_output
-/server/src/config/prod.yml
-/server/src/config/test.yml
 
 # IDEs and editors
 /.idea

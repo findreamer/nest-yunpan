@@ -48,3 +48,7 @@ $ mau deploy
 # Records
 
 1. [创建user_info表字段，16:48](https://www.bilibili.com/video/BV1qV4y1d7zY/?spm_id_from=333.1391.0.0&p=5&vd_source=d9e49226266d5da0fe19c5c912e11718)
+
+# 问题记录
+
+1. 接口返回验证码svg，分号被加了反斜杠
