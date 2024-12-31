@@ -5,6 +5,7 @@ import { UserModule } from './module/user/user.module';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
 import configuration from './config';
 import { MainModule } from './module/main/main.module';
+import { ShareModule } from './shared/share.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { MainModule } from './module/main/main.module';
         };
       },
     }),
+    ShareModule,
     UserModule,
     MainModule,
   ],
