@@ -1,8 +1,6 @@
-import {
-  MailerModule as NestMailerModule,
-  MailerService,
-} from '@nestjs-modules/mailer';
+import { MailerModule as NestMailerModule } from '@nestjs-modules/mailer';
 import { Module } from '@nestjs/common';
+import { MailerService } from './mailer.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({

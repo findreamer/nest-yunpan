@@ -15,9 +15,15 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
 
+    const exceptionResponse = exception.getResponse();
     response.status(200).json({
       code: status,
-      msg: exception.message ?? RESPONSE_CODE_MSG[status] ?? '服务器异常',
+      msg:
+        typeof exceptionResponse === 'string'
+          ? exceptionResponse
+          : ((exceptionResponse as any).message ??
+            RESPONSE_CODE_MSG[status] ??
+            '服务器异常'),
       timestamp: new Date().toISOString(),
       path: request.url,
       data: null,
