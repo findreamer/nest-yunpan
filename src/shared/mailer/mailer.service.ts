@@ -3,20 +3,20 @@ import {
   MailerService as NestMailerService,
   ISendMailOptions,
 } from '@nestjs-modules/mailer';
-import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class MailerService {
-  constructor(
-    private readonly mailerService: NestMailerService,
-    private readonly configService: ConfigService,
-  ) {}
+  constructor(private readonly mailerService: NestMailerService) {}
 
   public async sendMail(options: ISendMailOptions) {
-    const { auth } = this.configService.get('email');
-    const from = auth?.user ?? '';
-    return this.mailerService.sendMail({
-      from,
-      ...options,
+    return new Promise((resolve, reject) => {
+      this.mailerService
+        .sendMail(options)
+        .then(() => {
+          resolve('ok');
+        })
+        .catch((err) => {
+          reject(err);
+        });
     });
   }
 }

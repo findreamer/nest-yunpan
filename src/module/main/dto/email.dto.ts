@@ -15,7 +15,6 @@ export class SendEmailCodeDto {
     required: true,
   })
   @IsString({ message: '验证码必须为字符串' })
-  @Length(4, 4, { message: '验证码长度必须为4个字符' })
   code: string;
 
   @ApiProperty({

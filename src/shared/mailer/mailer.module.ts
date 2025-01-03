@@ -14,14 +14,18 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           port: configService.get('email.port'),
           secure: configService.get('email.secure'),
           auth: {
-            user: configService.get('email.user'),
-            pass: configService.get('email.pass'),
+            user: configService.get('email.auth.user'),
+            pass: configService.get('email.auth.pass'),
           },
+        },
+        defaults: {
+          from: configService.get('email.auth.user'),
+          address: configService.get('email.auth.user'),
         },
       }),
     }),
   ],
-  providers: [MailerService],
+  providers: [MailerService, ConfigService],
   exports: [MailerService],
 })
 export class MailerModule {}

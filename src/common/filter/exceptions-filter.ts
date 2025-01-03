@@ -15,9 +15,15 @@ export class ExceptionsFilter implements ExceptionFilter {
       exception instanceof HttpException
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
+
+    const exceptionResponse = exception?.getResponse();
+
     response.status(status).json({
       code: status,
-      msg: `Service Error: ${exception}`,
+      msg:
+        typeof exceptionResponse === 'string'
+          ? exceptionResponse
+          : ((exceptionResponse as any).message ?? '服务器异常'),
     });
   }
 }
