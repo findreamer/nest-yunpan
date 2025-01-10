@@ -38,4 +38,11 @@ export class EmailCodeEntity {
     comment: '状态 0:未使用 1:已使用',
   })
   status: number;
+
+  @Column({
+    type: 'varchar',
+    comment: 'uuid',
+    length: 36,
+  })
+  uuid: string;
 }

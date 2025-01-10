@@ -4,6 +4,9 @@ import { RedisService } from '@liaoliaots/nestjs-redis';
 import { Redis } from 'ioredis';
 import { CacheEnum } from '@/common/constant/cache';
 import { MailerService } from '@/shared/mailer/mailer.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { EmailCodeEntity } from './entities/email.entity';
 
 @Injectable()
 export class MainService {
@@ -11,6 +14,8 @@ export class MainService {
   constructor(
     private readonly redisService: RedisService,
     private readonly mailerService: MailerService,
+    @InjectRepository(EmailCodeEntity)
+    private readonly emailRepository: Repository<EmailCodeEntity>,
   ) {
     this.redis = this.redisService.getOrThrow();
   }
@@ -52,6 +57,16 @@ export class MainService {
         html: `<p>您的验证码是：${code}</p>`,
       });
       await this.redis.del(cacheKey);
+
+      const emailCode = this.emailRepository.create({
+        email,
+        code,
+        uuid,
+        status: 0,
+        create_time: new Date(),
+      });
+      await this.emailRepository.save(emailCode);
+
       return res;
     } catch (error) {
       console.log(error);

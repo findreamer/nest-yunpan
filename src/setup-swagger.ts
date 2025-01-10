@@ -42,6 +42,8 @@ export function setupSwagger(
     },
   });
 
-  const logger = new Logger('Swagger');
-  logger.log(`Document running on http://127.0.0.1:${port}/${path}`);
+  setTimeout(() => {
+    const logger = new Logger('Swagger');
+    logger.log(`Document running on http://127.0.0.1:${port}/${path}`);
+  }, 500);
 }
