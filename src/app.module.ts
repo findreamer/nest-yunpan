@@ -8,6 +8,10 @@ import { EmpModule } from './DDD/emp/emp.module';
 import { OrgTypeModule } from './DDD/org-type/org-type.module';
 import { OrgModule } from './DDD/org/org.module';
 import { EmpPostModule } from './DDD/emp-post/emp-post.module';
+import { ClientModule } from './DDD/client/client.module';
+import { ProjectModule } from './DDD/project/project.module';
+import { ProjectMemberModule } from './DDD/project-member/project-member.module';
+import { ContractModule } from './DDD/contract/contract.module';
 
 @Module({
   imports: [
@@ -21,6 +25,10 @@ import { EmpPostModule } from './DDD/emp-post/emp-post.module';
     EmpPostModule,
     OrgTypeModule,
     OrgModule,
+    ClientModule,
+    ContractModule,
+    ProjectModule,
+    ProjectMemberModule,
   ],
   controllers: [],
   providers: [],
