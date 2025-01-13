@@ -4,6 +4,12 @@ import { EmpEntity } from '@/DDD/emp/entities/emp.entity';
 import { TenantEntity } from '@/DDD/tenant/entities/tenant.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
+export enum ProjectStatusEnum {
+  DRAFT = '0',
+  EFFECTIVE = '1',
+  INVALID = '2',
+}
+
 @Entity('project', {
   comment: '项目表',
 })
@@ -38,10 +44,11 @@ export class ProjectEntity extends CommonEntity {
   name: string;
 
   @Column({
-    type: 'char',
+    type: 'enum',
     comment: '项目状态 0-草稿 1-生效 2-失效',
     default: '0',
+    enum: ProjectStatusEnum,
     nullable: false,
   })
-  status: string;
+  status: ProjectStatusEnum;
 }

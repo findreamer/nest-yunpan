@@ -1,4 +1,4 @@
-import { CommonEntity } from '@/common/entity/common.entity';
+import { CommonEntity, CommonStatusEnum } from '@/common/entity/common.entity';
 import { OrgEntity } from '@/DDD/org/entities/org.entity';
 import { TenantEntity } from '@/DDD/tenant/entities/tenant.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
@@ -51,4 +51,12 @@ export class EmpEntity extends CommonEntity {
     nullable: true,
   })
   dob: Date;
+
+  @Column({
+    type: 'enum',
+    default: CommonStatusEnum.ENABLE,
+    enum: CommonStatusEnum,
+    comment: '员工状态',
+  })
+  status: CommonStatusEnum;
 }

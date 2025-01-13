@@ -1,4 +1,4 @@
-import { CommonEntity } from '@/common/entity/common.entity';
+import { CommonEntity, CommonStatusEnum } from '@/common/entity/common.entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('tenant', {
@@ -14,4 +14,12 @@ export class TenantEntity extends CommonEntity {
     comment: '租户名称',
   })
   name: string;
+
+  @Column({
+    type: 'enum',
+    default: CommonStatusEnum.ENABLE,
+    enum: CommonStatusEnum,
+    comment: '租户状态',
+  })
+  status: CommonStatusEnum;
 }

@@ -1,4 +1,4 @@
-import { CommonEntity } from '@/common/entity/common.entity';
+import { CommonEntity, CommonStatusEnum } from '@/common/entity/common.entity';
 import { EmpEntity } from '@/DDD/emp/entities/emp.entity';
 import { TenantEntity } from '@/DDD/tenant/entities/tenant.entity';
 import {
@@ -31,4 +31,12 @@ export class ClientEntity extends CommonEntity {
     comment: '客户名称',
   })
   name: string;
+
+  @Column({
+    type: 'enum',
+    default: CommonStatusEnum.ENABLE,
+    enum: CommonStatusEnum,
+    comment: '客户状态',
+  })
+  status: CommonStatusEnum;
 }

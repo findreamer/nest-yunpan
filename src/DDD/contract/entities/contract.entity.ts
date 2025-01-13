@@ -4,6 +4,12 @@ import { EmpEntity } from '@/DDD/emp/entities/emp.entity';
 import { TenantEntity } from '@/DDD/tenant/entities/tenant.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
+export enum ContractStatusEnum {
+  DRAFT = '0',
+  EFFECTIVE = '1',
+  INVALID = '2',
+}
+
 @Entity('contract', {
   comment: '合同表',
 })
@@ -30,13 +36,13 @@ export class ContractEntity extends CommonEntity {
   num: string;
 
   @Column({
-    type: 'char',
-    length: 2,
+    type: 'enum',
+    enum: ContractStatusEnum,
     comment: '合同状态 0-草稿 1-生效 2-失效',
-    default: '0',
+    default: ContractStatusEnum.DRAFT,
     nullable: false,
   })
-  status: string;
+  status: ContractStatusEnum;
 
   @Column({
     type: 'varchar',

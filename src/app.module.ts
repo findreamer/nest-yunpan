@@ -12,6 +12,7 @@ import { ClientModule } from './DDD/client/client.module';
 import { ProjectModule } from './DDD/project/project.module';
 import { ProjectMemberModule } from './DDD/project-member/project-member.module';
 import { ContractModule } from './DDD/contract/contract.module';
+import { EffortRecordModule } from './DDD/effort-record/effort-record.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { ContractModule } from './DDD/contract/contract.module';
     ContractModule,
     ProjectModule,
     ProjectMemberModule,
+    EffortRecordModule,
   ],
   controllers: [],
   providers: [],

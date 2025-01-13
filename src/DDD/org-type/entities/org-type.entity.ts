@@ -1,4 +1,4 @@
-import { CommonEntity } from '@/common/entity/common.entity';
+import { CommonEntity, CommonStatusEnum } from '@/common/entity/common.entity';
 import { EmpEntity } from '@/DDD/emp/entities/emp.entity';
 import { TenantEntity } from '@/DDD/tenant/entities/tenant.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
@@ -19,4 +19,12 @@ export class OrgTypeEntity extends CommonEntity {
 
   @ManyToOne(() => TenantEntity, (tenant) => tenant.id)
   tenant: TenantEntity;
+
+  @Column({
+    type: 'enum',
+    default: CommonStatusEnum.ENABLE,
+    enum: CommonStatusEnum,
+    comment: '组织类型状态',
+  })
+  status: CommonStatusEnum;
 }

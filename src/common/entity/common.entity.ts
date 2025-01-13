@@ -41,3 +41,8 @@ export abstract class CommonEntity extends BaseEntity {
   @Column({ type: 'boolean', default: false, name: 'is_deleted' })
   isDeleted: boolean;
 }
+
+export enum CommonStatusEnum {
+  ENABLE = 1,
+  DISABLE = 0,
+}
