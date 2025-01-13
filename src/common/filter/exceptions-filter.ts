@@ -8,7 +8,7 @@ import {
 
 @Catch()
 export class ExceptionsFilter implements ExceptionFilter {
-  catch(exception: any, host: ArgumentsHost) {
+  catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const status =
@@ -16,7 +16,8 @@ export class ExceptionsFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
-    const exceptionResponse = exception?.getResponse();
+    const exceptionResponse =
+      exception instanceof HttpException ? exception?.getResponse() : exception;
 
     response.status(status).json({
       code: status,

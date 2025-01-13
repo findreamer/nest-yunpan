@@ -24,7 +24,7 @@ export class OrgEntity extends CommonEntity {
   @ManyToOne(() => OrgEntity, (org) => org.id)
   superior: OrgEntity;
 
-  @ManyToOne(() => OrgTypeEntity, (orgType) => orgType.id)
+  @ManyToOne(() => OrgTypeEntity, (orgType) => orgType.code)
   orgType: OrgTypeEntity;
 
   @ManyToOne(() => EmpEntity, (emp) => emp.id)

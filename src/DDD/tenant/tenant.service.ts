@@ -1,11 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTenantDto } from './dto/create-tenant.dto';
 import { UpdateTenantDto } from './dto/update-tenant.dto';
+import { CommonStatusEnum } from '@/common/entity/common.entity';
+import { Repository } from 'typeorm';
+import { TenantEntity } from './entities/tenant.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class TenantService {
-  create(createTenantDto: CreateTenantDto) {
-    return 'This action adds a new tenant';
+  constructor(
+    @InjectRepository(TenantEntity)
+    private readonly tenantRep: Repository<TenantEntity>,
+  ) {}
+  async create(createTenantDto: CreateTenantDto) {
+    const { name, status = CommonStatusEnum.ENABLE } = createTenantDto;
+    const tenant = this.tenantRep.create({
+      name,
+      status,
+      createBy: 0,
+      updateBy: 0,
+    });
+    const res = await tenant.save();
+    return res;
   }
 
   findAll() {

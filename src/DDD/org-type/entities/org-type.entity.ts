@@ -1,14 +1,17 @@
 import { CommonEntity, CommonStatusEnum } from '@/common/entity/common.entity';
-import { EmpEntity } from '@/DDD/emp/entities/emp.entity';
 import { TenantEntity } from '@/DDD/tenant/entities/tenant.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 
 @Entity('org_type', {
   comment: '组织类型表',
 })
 export class OrgTypeEntity extends CommonEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryColumn({
+    type: 'char',
+    length: 10,
+    comment: '组织类型编码',
+  })
+  code: string;
 
   @Column({
     type: 'varchar',
