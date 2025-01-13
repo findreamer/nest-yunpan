@@ -36,38 +36,62 @@ export class LoggerService extends ConsoleLogger {
     return this.configService.get('app.logger.maxFiles', { infer: true });
   }
 
+  /**
+   * 初始化 Winston 日志记录器。
+   * 配置日志级别、格式和传输方式。
+   * 在开发环境中，还会添加控制台输出。
+   */
   protected initWinston(): void {
+    // 创建一个 Winston 日志记录器实例
     this.winstonLogger = createLogger({
+      // 使用 npm 风格的日志级别
       levels: config.npm.levels,
+      // 定义日志的格式，包括错误堆栈、时间戳和 JSON 格式
       format: format.combine(
         format.errors({ stack: true }),
         format.timestamp(),
         format.json(),
       ),
+      // 配置日志传输方式，这里使用了每日轮转文件
       transports: [
         new transports.DailyRotateFile({
+          // 设置日志级别
           level: this.level,
+          // 日志文件名，包含日期
           filename: 'logs/app.%DATE%.log',
+          // 日期模式
           datePattern: 'YYYY-MM-DD',
+          // 最大文件数
           maxFiles: this.maxFiles,
+          // 日志格式，包含时间戳和 JSON 格式
           format: format.combine(format.timestamp(), format.json()),
+          // 审计文件路径
           auditFile: 'logs/.audit/app.json',
         }),
         new transports.DailyRotateFile({
+          // 设置日志级别为 ERROR
           level: LogLevel.ERROR,
+          // 错误日志文件名，包含日期
           filename: 'logs/app-error.%DATE%.log',
+          // 日期模式
           datePattern: 'YYYY-MM-DD',
+          // 最大文件数
           maxFiles: this.maxFiles,
+          // 日志格式，包含时间戳和 JSON 格式
           format: format.combine(format.timestamp(), format.json()),
+          // 错误日志的审计文件路径
           auditFile: 'logs/.audit/app-error.json',
         }),
       ],
     });
 
+    // 在开发环境中，添加控制台输出
     // if (isDev) {
     //   this.winstonLogger.add(
     //     new transports.Console({
+    //       // 设置日志级别
     //       level: this.level,
+    //       // 定义控制台输出的格式，包括简单格式和颜色
     //       format: format.combine(
     //         format.simple(),
     //         format.colorize({ all: true }),
