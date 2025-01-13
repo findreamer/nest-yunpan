@@ -1,4 +1,4 @@
-import { INestApplication, Logger } from '@nestjs/common';
+import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { API_SECURITY_AUTH } from '@/common/decorators/swagger.decorator';
@@ -10,7 +10,7 @@ export function setupSwagger(
   app: INestApplication,
   configService: ConfigService,
 ) {
-  const { port, name } = configService.get('app');
+  const { name } = configService.get('app');
   const { enable, title, description, path, version } =
     configService.get('swagger');
 
@@ -41,9 +41,4 @@ export function setupSwagger(
       persistAuthorization: true,
     },
   });
-
-  setTimeout(() => {
-    const logger = new Logger('Swagger');
-    logger.log(`Document running on http://127.0.0.1:${port}/${path}`);
-  }, 500);
 }

@@ -4,7 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import configuration from '@/config';
-import { AuthModule } from '../module/auth/auth.module';
+import { LoggerModule } from './logger/logger.module';
 
 @Global()
 @Module({
@@ -41,6 +41,7 @@ import { AuthModule } from '../module/auth/auth.module';
       },
     }),
     MailerModule,
+    LoggerModule.forRoot(),
   ],
   exports: [MailerModule],
 })
