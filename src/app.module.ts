@@ -13,12 +13,14 @@ import { ProjectModule } from './DDD/project/project.module';
 import { ProjectMemberModule } from './DDD/project-member/project-member.module';
 import { ContractModule } from './DDD/contract/contract.module';
 import { EffortRecordModule } from './DDD/effort-record/effort-record.module';
+import { AuthModule } from './module/auth/auth.module';
 
 @Module({
   imports: [
     ShareModule,
     UserModule,
     MainModule,
+    AuthModule,
     // DDD
     TenantModule,
     PostModule,
