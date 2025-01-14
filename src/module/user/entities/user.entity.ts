@@ -1,84 +1,86 @@
-import { Column, Entity, PrimaryGeneratedColumn, Index } from 'typeorm';
+import { CommonEntity } from '@/common/entity/common.entity';
+import { Exclude } from 'class-transformer';
+import { Column, Entity } from 'typeorm';
 @Entity({
-  name: 'user_info',
+  name: 'sys_user',
+  comment: '用户表',
 })
-export class User {
-  @PrimaryGeneratedColumn({
-    comment: '用户ID',
-  })
-  user_id: string;
-
+export class UserEntity extends CommonEntity {
   @Column({
     type: 'varchar',
+    length: 32,
+    unique: true,
     comment: '用户名',
-    length: 20,
   })
-  @Index({
-    unique: true,
+  username: string;
+
+  @Exclude()
+  @Column({
+    type: 'varchar',
+    comment: '密码',
   })
-  nick_name: string;
+  password: string;
 
   @Column({
     type: 'varchar',
-    comment: '用户邮箱',
-    length: 50,
+    length: 32,
   })
-  @Index({
-    unique: true,
+  paslt: string;
+
+  @Column({
+    type: 'varchar',
+    comment: '昵称',
+    nullable: true,
+  })
+  nickname: string;
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+    comment: '头像',
+  })
+  avatar: string;
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+    comment: 'QQ号',
+  })
+  qq: string;
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+    comment: '邮箱',
   })
   email: string;
 
   @Column({
     type: 'varchar',
-    comment: 'QQ OpenId',
-    length: 35,
+    nullable: true,
+    comment: '手机号',
   })
-  @Index({
-    unique: true,
-  })
-  qq_open_id: string;
+  phone: string;
 
   @Column({
     type: 'varchar',
-    comment: 'QQ 头像',
-    length: 255,
+    nullable: true,
+    comment: '备注',
   })
-  qq_avatar: string;
-
-  @Column({
-    type: 'varchar',
-    comment: '密码',
-    length: 32,
-  })
-  password: string;
-
-  @Column({
-    type: 'datetime',
-    comment: '加入时间',
-  })
-  join_time: Date;
-
-  @Column({
-    type: 'datetime',
-    comment: '最后登录时间',
-  })
-  last_login_time: Date;
+  remark: string;
 
   @Column({
     type: 'tinyint',
     comment: '状态 0:禁用 1:启用',
+    default: 1,
+    nullable: true,
   })
   status: number;
 
-  @Column({
-    type: 'bigint',
-    comment: '使用空间',
-  })
-  use_space: bigint;
-
-  @Column({
-    type: 'bigint',
-    comment: '总空间',
-  })
-  total_space: bigint;
+  // todo: 角色
+  // todo: 权限
+  // todo: 部门
+  // todo: 岗位
+  // todo: 菜单
+  // todo: 按钮
 }
