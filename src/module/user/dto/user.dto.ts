@@ -1,3 +1,4 @@
+import { PagerDto } from '@/common/dto/pager.dto';
 import { IntersectionType, PartialType } from '@nestjs/mapped-types';
 import { ApiProperty } from '@nestjs/swagger';
 import {
@@ -103,4 +104,28 @@ export class CreateUserDto {
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {}
 
-export class UserQueryDto extends IntersectionType()
+export class UserQueryDto extends IntersectionType(
+  PagerDto<CreateUserDto>,
+  PartialType(CreateUserDto),
+) {
+  @ApiProperty({
+    description: '归属大区',
+    type: Number,
+    example: 1,
+    required: false,
+  })
+  @IsOptional()
+  @IsNumber()
+  deptId?: number;
+
+  @ApiProperty({
+    description: '状态',
+    type: Number,
+    example: 1,
+    required: false,
+  })
+  @IsIn([0, 1])
+  @IsInt()
+  @IsOptional()
+  status?: number;
+}
