@@ -1,6 +1,7 @@
 import { CommonEntity } from '@/common/entity/common.entity';
+import { RoleEntity } from '@/module/system/role/entities/role.entity';
 import { Exclude } from 'class-transformer';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, Relation } from 'typeorm';
 @Entity({
   name: 'sys_user',
   comment: '用户表',
@@ -78,7 +79,20 @@ export class UserEntity extends CommonEntity {
   status: number;
 
   // todo: 角色
-  // todo: 权限
+
+  @ManyToMany(() => RoleEntity, (role) => role.users)
+  @JoinTable({
+    name: 'sys_user_role',
+    joinColumn: {
+      name: 'user_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'role_id',
+      referencedColumnName: 'id',
+    },
+  })
+  roles: Relation<RoleEntity[]>;
   // todo: 部门
   // todo: 岗位
   // todo: 菜单
