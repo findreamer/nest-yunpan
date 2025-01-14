@@ -1,4 +1,5 @@
 import { CommonEntity } from '@/common/entity/common.entity';
+import { AccessTokenEntity } from '@/module/auth/entities/access-token.entity';
 import { DeptEntity } from '@/module/system/dept/entities/dept.entity';
 import { RoleEntity } from '@/module/system/role/entities/role.entity';
 import { Exclude } from 'class-transformer';
@@ -9,6 +10,7 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   Relation,
 } from 'typeorm';
 @Entity({
@@ -108,6 +110,11 @@ export class UserEntity extends CommonEntity {
     name: 'dept_id',
   })
   dept: Relation<DeptEntity>;
+
+  @OneToMany(() => AccessTokenEntity, (access_token) => access_token.user, {
+    cascade: true,
+  })
+  access_tokens: Relation<AccessTokenEntity[]>;
   // todo: 部门
   // todo: 岗位
   // todo: 菜单
