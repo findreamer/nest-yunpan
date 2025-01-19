@@ -5,6 +5,9 @@ import { AuthService } from './auth.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccessTokenEntity } from './entities/access-token.entity';
 import { RefreshTokenEntity } from './entities/refresh-token.entity';
+import { CaptchaController } from './controllers/captcha.controller';
+
+const controllers = [CaptchaController];
 
 @Module({
   imports: [
@@ -17,6 +20,7 @@ import { RefreshTokenEntity } from './entities/refresh-token.entity';
       }),
     }),
   ],
+  controllers,
   providers: [AuthService],
 })
 export class AuthModule {}

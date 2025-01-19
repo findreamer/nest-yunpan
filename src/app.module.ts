@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
+import { ClassSerializerInterceptor, Module } from '@nestjs/common';
 import { UserModule } from './module/user/user.module';
 import { MainModule } from './module/main/main.module';
 import { ShareModule } from './shared/share.module';
 import { AuthModule } from './module/auth/auth.module';
 import { RoleModule } from './module/system/role/role.module';
 import { DeptModule } from './module/system/dept/dept.module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -16,6 +17,11 @@ import { DeptModule } from './module/system/dept/dept.module';
     DeptModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ClassSerializerInterceptor,
+    },
+  ],
 })
 export class AppModule {}
