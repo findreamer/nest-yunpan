@@ -1,3 +1,2 @@
 export * from './env';
-export * from './captcha';
-export * from './utils';
+export * from './tool.utils';

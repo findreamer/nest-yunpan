@@ -1,10 +1,11 @@
 import { Global, Module } from '@nestjs/common';
 import { MailerModule } from './mailer/mailer.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { RedisModule } from '@liaoliaots/nestjs-redis';
+
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import configuration from '@/config';
 import { LoggerModule } from './logger/logger.module';
+import { RedisModule } from '@liaoliaots/nestjs-redis';
 
 @Global()
 @Module({
@@ -28,18 +29,7 @@ import { LoggerModule } from './logger/logger.module';
           ...configService.get('db.mysql'),
         }) as TypeOrmModuleOptions,
     }),
-    RedisModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => {
-        return {
-          closeClient: true,
-          readyLog: true,
-          errorLog: true,
-          config: configService.get('redis'),
-        };
-      },
-    }),
+    RedisModule,
     MailerModule,
     LoggerModule.forRoot(),
   ],

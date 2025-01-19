@@ -2,14 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { RedisService } from '@liaoliaots/nestjs-redis';
-import { Redis } from 'ioredis';
+import { InjectRedis } from '@/common/decorators/inject.redis.dectors';
+import Redis from 'ioredis';
 
 @Injectable()
 export class UserService {
   private redis: Redis;
-  constructor(private readonly redisService: RedisService) {
-    this.redis = this.redisService.getOrThrow();
-  }
+  constructor(
+    @InjectRedis()
+    private readonly redisService: Redis,
+  ) {}
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
   }
