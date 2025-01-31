@@ -5,7 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import configuration from '@/config';
 import { LoggerModule } from './logger/logger.module';
-import { RedisModule } from '@liaoliaots/nestjs-redis';
+import { RedisModule } from './redis/redis.module';
 
 @Global()
 @Module({
