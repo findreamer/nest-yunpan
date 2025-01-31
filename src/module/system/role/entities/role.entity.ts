@@ -1,6 +1,6 @@
 import { CommonEntity } from '@/common/entity/common.entity';
 import { UserEntity } from '@/module/user/entities/user.entity';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, ManyToMany, Relation } from 'typeorm';
 
 @Entity({
@@ -61,6 +61,7 @@ export class RoleEntity extends CommonEntity {
   })
   default: boolean;
 
+  @ApiHideProperty()
   @ManyToMany(() => UserEntity, (user) => user.roles, {})
   users: Relation<UserEntity[]>;
 
