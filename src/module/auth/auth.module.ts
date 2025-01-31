@@ -6,8 +6,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccessTokenEntity } from './entities/access-token.entity';
 import { RefreshTokenEntity } from './entities/refresh-token.entity';
 import { CaptchaController } from './controllers/captcha.controller';
+import { PassportModule } from '@nestjs/passport';
+import { UserModule } from '../user/user.module';
+import { CaptchaService } from './services/captcha.service';
+import { TokenService } from './services/token.service';
 
 const controllers = [CaptchaController];
+const providers = [AuthService, CaptchaService, TokenService];
 
 @Module({
   imports: [
@@ -19,8 +24,10 @@ const controllers = [CaptchaController];
         secret: configService.get('jwt.secret'),
       }),
     }),
+    PassportModule,
+    UserModule,
   ],
-  controllers,
-  providers: [AuthService],
+  controllers: [...controllers],
+  providers: [...providers],
 })
 export class AuthModule {}

@@ -1,7 +1,9 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -11,7 +13,7 @@ import { AccessTokenEntity } from './access-token.entity';
   name: 'user_refresh_token',
   comment: '用户刷新令牌表',
 })
-export class RefreshTokenEntity {
+export class RefreshTokenEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -34,5 +36,6 @@ export class RefreshTokenEntity {
       onDelete: 'CASCADE',
     },
   )
+  @JoinColumn()
   accessToken: AccessTokenEntity;
 }

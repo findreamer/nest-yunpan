@@ -1,18 +1,38 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Headers, Ip, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { LoginDto, RegisterDto } from './dto/auth.dto';
+import { Public } from '@/common/decorators/public.decorator';
+import { LocalGuard } from '@/common/guard/local.guard';
+import { ApiResult } from '@/common/decorators';
+import { LoginRes } from './models/auth.model';
+import { CaptchaService } from './services/captcha.service';
 
 @ApiTags('Auth - 认证')
 @Controller('auth')
+@Public()
+@UseGuards(LocalGuard)
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly captchaService: CaptchaService,
+  ) {}
 
   @ApiOperation({
     summary: '登录',
   })
   @Post('login')
-  async login(@Body() dto: LoginDto) {}
+  @ApiResult({ type: LoginRes })
+  async login(
+    @Body() dto: LoginDto,
+    @Ip() ip: string,
+    @Headers('user-agent') ua: string,
+  ) {
+    await this.captchaService.validateCaptcha(dto.captchaId, dto.verifyCode);
+    const token = await this.authService.login();
+
+    return { token };
+  }
 
   @Post('register')
   async register(@Body() dto: RegisterDto) {}
