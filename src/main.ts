@@ -1,6 +1,5 @@
 import { NestApplication, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './common/filter/http-exception.filter';
 import { ConfigService } from '@nestjs/config';
 import {
   ResponseFormatterInterceptor,
@@ -15,7 +14,7 @@ import {
   ValidationPipe,
   Logger,
 } from '@nestjs/common';
-import { ExceptionsFilter } from './common/filter/exceptions-filter';
+import { AnyExceptionFilter } from './common/filter/any-exception.filter';
 import { LoggerService } from './shared/logger/logger.service';
 import cluster from 'node:cluster';
 import { isMainProcess } from './global/env';
@@ -35,8 +34,7 @@ async function bootstrap() {
   }
 
   // 注册全局过滤器
-  app.useGlobalFilters(new HttpExceptionFilter());
-  app.useGlobalFilters(new ExceptionsFilter());
+  app.useGlobalFilters(new AnyExceptionFilter());
   // 注册全局拦截器
   app.useGlobalInterceptors(new ResponseFormatterInterceptor());
   app.useGlobalPipes(

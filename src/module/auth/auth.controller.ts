@@ -29,7 +29,8 @@ export class AuthController {
     @Headers('user-agent') ua: string,
   ) {
     await this.captchaService.validateCaptcha(dto.captchaId, dto.verifyCode);
-    const token = await this.authService.login();
+    const { username, password } = dto;
+    const token = await this.authService.login(username, password, ip, ua);
 
     return { token };
   }

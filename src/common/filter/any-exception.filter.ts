@@ -25,7 +25,6 @@ export class AnyExceptionFilter implements ExceptionFilter {
     const url = request.url;
 
     let message = this.getErrorMessage(exception);
-
     // 系统内部错误
     if (
       status === HttpStatus.INTERNAL_SERVER_ERROR &&

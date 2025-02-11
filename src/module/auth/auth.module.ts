@@ -10,8 +10,10 @@ import { PassportModule } from '@nestjs/passport';
 import { UserModule } from '../user/user.module';
 import { CaptchaService } from './services/captcha.service';
 import { TokenService } from './services/token.service';
+import { RoleModule } from '../system/role/role.module';
+import { AuthController } from './auth.controller';
 
-const controllers = [CaptchaController];
+const controllers = [CaptchaController, AuthController];
 const providers = [AuthService, CaptchaService, TokenService];
 
 @Module({
@@ -26,6 +28,7 @@ const providers = [AuthService, CaptchaService, TokenService];
     }),
     PassportModule,
     UserModule,
+    RoleModule,
   ],
   controllers: [...controllers],
   providers: [...providers],

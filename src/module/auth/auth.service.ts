@@ -44,12 +44,12 @@ export class AuthService {
   async login(username: string, password: string, ip: string, ua: string) {
     const user = await this.userService.findByUsername(username);
     if (isEmpty(user)) {
-      return new BusinessException(ErrorEnum.INVALID_USERNAME_PASSWORD);
+      throw new BusinessException(ErrorEnum.INVALID_USERNAME_PASSWORD);
     }
 
     const comparePassword = md5(`${password}${user.paslt}`);
     if (comparePassword !== user.password) {
-      return new BusinessException(ErrorEnum.INVALID_USERNAME_PASSWORD);
+      throw new BusinessException(ErrorEnum.INVALID_USERNAME_PASSWORD);
     }
 
     // 角色信息
