@@ -7,6 +7,7 @@ import { LocalGuard } from '@/common/guard/local.guard';
 import { ApiResult } from '@/common/decorators';
 import { LoginRes } from './models/auth.model';
 import { CaptchaService } from './services/captcha.service';
+import { UserService } from '../user/user.service';
 
 @ApiTags('Auth - 认证')
 @Controller('auth')
@@ -16,6 +17,7 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly captchaService: CaptchaService,
+    private readonly userService: UserService,
   ) {}
 
   @ApiOperation({
@@ -36,5 +38,7 @@ export class AuthController {
   }
 
   @Post('register')
-  async register(@Body() dto: RegisterDto) {}
+  async register(@Body() dto: RegisterDto) {
+    await this.userService.register(dto);
+  }
 }

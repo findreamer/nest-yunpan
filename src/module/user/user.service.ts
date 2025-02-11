@@ -1,11 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRedis } from '@/common/decorators/inject.redis.dectors';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
+import { EntityManager, Repository } from 'typeorm';
 import { UserEntity } from './entities/user.entity';
-import Redis from 'ioredis';
 import { CreateUserDto } from './dto/user.dto';
 import { UpdateDeptDto } from '../system/dept/dto/update-dept.dto';
+import { RegisterDto } from '../auth/dto/auth.dto';
+import { isEmpty } from 'lodash';
+import Redis from 'ioredis';
+import { BizException } from '@/common/exceptions/biz.exception';
+import { ErrorEnum } from '@/common/constant';
+import { md5, randomValue } from '@/utils';
 
 @Injectable()
 export class UserService {
@@ -14,6 +19,8 @@ export class UserService {
     private readonly redis: Redis,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
+    @InjectEntityManager()
+    private readonly entityManager: EntityManager,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -48,5 +55,32 @@ export class UserService {
         status: 1,
       })
       .getOne();
+  }
+
+  /**
+   *
+   * @param dto
+   */
+  async register(dto: RegisterDto) {
+    const { username, ...data } = dto;
+    const exists = await this.userRepository.findOneBy({ username });
+
+    if (!isEmpty(exists)) {
+      throw new BizException(ErrorEnum.SYSTEM_USER_EXISTS);
+    }
+
+    await this.entityManager.transaction(async (manager) => {
+      const salt = randomValue(32);
+      const password = md5(`${data.password ?? 'a123456'}${salt}`);
+      const u = manager.create(UserEntity, {
+        username,
+        password,
+        status: 1,
+        paslt: salt,
+      });
+
+      const user = await manager.save(u);
+      return user;
+    });
   }
 }
